@@ -4,7 +4,6 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import net.arver.oa.common.util.R;
 import net.arver.oa.form.TestSayHelloForm;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +22,7 @@ public class TestController {
 
     /**
      * 测试方法.
+     * @param form 表单
      * @return 测试数据
      */
     @PostMapping("/sayHello")
