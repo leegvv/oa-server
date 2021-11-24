@@ -54,3 +54,12 @@ logging:
     net.arver.oa.dao: warn
   pattern:
     console: "%d{HH:mm:ss}  %-5level  %msg%n"
+
+oa:
+  jwt:
+    # 密钥
+    secret: abc123456
+    # 令牌过期天数（天）
+    expire: 5
+    # 令牌缓存时间（天）
+    cache-expire: 10
