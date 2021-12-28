@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.arver.oa.mapper.UserMapper">
+  <resultMap extends="net.arver.oa.mapper.UserMapper.BaseResultMap" id="ResultMap" type="net.arver.oa.pojo.User" />
+
+  <select id="getUserPermissions" parameterType="int" resultType="String">
+    select p.permission_name
+    from tb_user u
+           join tb_role r on json_contains(u.role, cast(r.id as char))
+           join tb_permission p on json_contains(r.permissions, cast(p.id as char))
+    where u.id = #{userId} and u.status = 1;
+  </select>
+</mapper>

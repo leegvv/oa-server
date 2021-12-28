@@ -155,10 +155,12 @@ public final class R<T> {
      * setter.
      * @param key key
      * @param value value
+     * @return R
      */
     @JsonAnySetter
-    public void setAdditionalProperties(final String key, final Object value) {
+    public R setAdditionalProperties(final String key, final Object value) {
         this.additionalProperties.put(key, value);
+        return this;
     }
 
     /**

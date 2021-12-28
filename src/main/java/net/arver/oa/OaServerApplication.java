@@ -8,7 +8,6 @@ import org.springframework.boot.web.servlet.ServletComponentScan;
 @ServletComponentScan
 public class OaServerApplication {
 
-
     public static void main(final String[] args) {
         SpringApplication.run(OaServerApplication.class, args);
     }
