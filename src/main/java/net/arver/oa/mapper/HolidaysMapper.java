@@ -12,4 +12,10 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface HolidaysMapper extends BaseMapper<Holidays, Integer, HolidaysExample> {
+
+    /**
+     * 查询今天是否是节假日.
+     * @return 记录id
+     */
+    Integer searchTodayIsHoliday();
 }

@@ -16,9 +16,16 @@ import java.util.Set;
 public interface UserMapper extends BaseMapper<User, Integer, UserExample> {
 
     /**
+     * 根据openId查询用户id.
+     * @param openId openId
+     * @return 用户id
+     */
+    Integer searchIdByOpenId(String openId);
+
+    /**
      * 查询用户权限.
      * @param userId 用户id
      * @return 权限集合
      */
-    Set<String> getUserPermissions(int userId);
+    Set<String> searchUserPermissions(int userId);
 }

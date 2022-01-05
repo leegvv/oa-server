@@ -71,15 +71,28 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Set<String> getUserPermissions(final int userId) {
-        /*<select id="getUserPermissions" parameterType="int" resultType="String">
-                select p.permission_name
-        from tb_user u
-        join tb_role r on json_contains(u.role, cast(r.id as char))
-        join tb_permission p on json_contains(r.permissions, cast(p.id as char))
-        where u.id = #{userId} and u.status = 1;
-  </select>*/
-        return userMapper.getUserPermissions(userId);
+    public Set<String> searchUserPermissions(final int userId) {
+        return userMapper.searchUserPermissions(userId);
+    }
+
+    @Override
+    public Integer login(final String code) {
+        final String openId = getOpenId(code);
+        final Integer id = userMapper.searchIdByOpenId(openId);
+        if (id == null) {
+            throw new ServiceException("账户不存在");
+        }
+        // TODO 从消息队列中接收消息，转移到消息表
+        return id;
+    }
+
+    @Override
+    public User searchById(final int userId) {
+        final User user = userMapper.selectByPrimaryKey(userId);
+        if (user != null && user.getStatus() == 1) {
+            return user;
+        }
+        return null;
     }
 
     /**

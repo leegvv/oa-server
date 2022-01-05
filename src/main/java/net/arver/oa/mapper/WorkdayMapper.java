@@ -12,4 +12,10 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface WorkdayMapper extends BaseMapper<Workday, Integer, WorkdayExample> {
+
+    /**
+     * 查询当天是否是工作日.
+     * @return 记录id
+     */
+    Integer searchTodayIsWorkday();
 }

@@ -2,4 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="net.arver.oa.mapper.WorkdayMapper">
   <resultMap extends="net.arver.oa.mapper.WorkdayMapper.BaseResultMap" id="ResultMap" type="net.arver.oa.pojo.Workday" />
+
+  <select id="searchTodayIsWorkday" resultType="Integer">
+    select id from tb_workday where date = current_date limit 1;
+  </select>
 </mapper>

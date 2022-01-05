@@ -4,6 +4,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import net.arver.oa.common.util.R;
 import net.arver.oa.config.shiro.JwtUtil;
+import net.arver.oa.form.LoginForm;
 import net.arver.oa.form.RegisterForm;
 import net.arver.oa.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,9 +63,26 @@ public class UserController {
         final int userId = userService.registerUser(form.getRegisterCode(), form.getCode(),
                 form.getNickname(), form.getPhoto());
         final String token = jwtUtil.createToken(userId);
-        final Set<String> permissions = userService.getUserPermissions(userId);
+        final Set<String> permissions = userService.searchUserPermissions(userId);
         saveCacheToken(token, userId);
         return R.ok(userId).setAdditionalProperties("token", token).setAdditionalProperties("permission", permissions);
+    }
+
+    /**
+     * 登陆.
+     * @param form 授权码
+     * @return 登陆状态
+     */
+    @PostMapping("/login")
+    @ApiOperation("登陆系统")
+    public R login(@Valid @RequestBody final LoginForm form) {
+        final Integer id = userService.login(form.getCode());
+        final String token = jwtUtil.createToken(id);
+        final Set<String> userPermissions = userService.searchUserPermissions(id);
+        saveCacheToken(token, id);
+        return R.ok("登陆成功")
+                .setAdditionalProperties("token", token)
+                .setAdditionalProperties("permission", userPermissions);
     }
 
     /**

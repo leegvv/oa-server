@@ -3,7 +3,11 @@
 <mapper namespace="net.arver.oa.mapper.UserMapper">
   <resultMap extends="net.arver.oa.mapper.UserMapper.BaseResultMap" id="ResultMap" type="net.arver.oa.pojo.User" />
 
-  <select id="getUserPermissions" parameterType="int" resultType="String">
+    <select id="searchIdByOpenId" parameterType="String" resultType="Integer">
+        select id from tb_user where open_id=#{openId} and status = 1;
+    </select>
+
+  <select id="searchUserPermissions" parameterType="int" resultType="String">
     select p.permission_name
     from tb_user u
            join tb_role r on json_contains(u.role, cast(r.id as char))
