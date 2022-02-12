@@ -5,6 +5,7 @@ import net.arver.oa.pojo.User;
 import net.arver.oa.pojo.gen.UserExample;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.HashMap;
 import java.util.Set;
 
 /**
@@ -28,4 +29,19 @@ public interface UserMapper extends BaseMapper<User, Integer, UserExample> {
      * @return 权限集合
      */
     Set<String> searchUserPermissions(int userId);
+
+    /**
+     * 查询员工的姓名和部门名称.
+     * @param userId 员工id
+     * @return 姓名和部门
+     */
+    HashMap<String, String> searchNameAndDept(Integer userId);
+
+    /**
+     * 查询用户信息.
+     * @param userId 用户id
+     * @return result
+     */
+    HashMap<String, Object> searchUserSummary(Integer userId);
+
 }

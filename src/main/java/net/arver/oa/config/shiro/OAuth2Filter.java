@@ -1,7 +1,6 @@
 package net.arver.oa.config.shiro;
 
 import cn.hutool.core.util.StrUtil;
-import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.exceptions.TokenExpiredException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authc.AuthenticationException;

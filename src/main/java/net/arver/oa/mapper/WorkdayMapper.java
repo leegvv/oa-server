@@ -5,6 +5,9 @@ import net.arver.oa.pojo.Workday;
 import net.arver.oa.pojo.gen.WorkdayExample;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.ArrayList;
+import java.util.Map;
+
 /**
  * WorkdayMapper继承基类.
  * 由MybatisGenerator自动生成请勿修改
@@ -18,4 +21,11 @@ public interface WorkdayMapper extends BaseMapper<Workday, Integer, WorkdayExamp
      * @return 记录id
      */
     Integer searchTodayIsWorkday();
+
+    /**
+     * 查询是否工作日.
+     * @param map map
+     * @return 是否工作日
+     */
+    ArrayList<String> searchWorkdayInRange(Map map);
 }

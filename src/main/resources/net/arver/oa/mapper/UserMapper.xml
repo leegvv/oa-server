@@ -1,17 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="net.arver.oa.mapper.UserMapper">
-  <resultMap extends="net.arver.oa.mapper.UserMapper.BaseResultMap" id="ResultMap" type="net.arver.oa.pojo.User" />
+    <resultMap extends="net.arver.oa.mapper.UserMapper.BaseResultMap" id="ResultMap" type="net.arver.oa.pojo.User"/>
 
     <select id="searchIdByOpenId" parameterType="String" resultType="Integer">
-        select id from tb_user where open_id=#{openId} and status = 1;
+        select id
+        from tb_user
+        where open_id = #{openId}
+          and status = 1;
     </select>
 
-  <select id="searchUserPermissions" parameterType="int" resultType="String">
-    select p.permission_name
-    from tb_user u
-           join tb_role r on json_contains(u.role, cast(r.id as char))
-           join tb_permission p on json_contains(r.permissions, cast(p.id as char))
-    where u.id = #{userId} and u.status = 1;
-  </select>
+    <select id="searchUserPermissions" parameterType="int" resultType="String">
+        select p.permission_name
+
+        from tb_user u
+                 join tb_role r on json_contains(u.role, cast(r.id as char))
+                 join tb_permission p on json_contains(r.permissions, cast(p.id as char))
+
+        where u.id = #{userId}
+          and u.status = 1;
+    </select>
+
+    <select id="searchNameAndDept" parameterType="int" resultType="HashMap">
+        select u.name, u.dept_name
+        from tb_user u
+                 left join tb_dept d on u.dept_id = d.id
+        where u.id = #{userId}
+          and u.status = 1;
+    </select>
+
+    <select id="searchUserSummary" parameterType="int" resultType="HashMap">
+        select u.name, u.photo, d.dept_name as deptName
+        from tb_user u
+                 left join tb_dept d on u.dept_id = d.id
+        where u.id = #{userId}
+          and u.status = 1
+    </select>
 </mapper>

@@ -42,6 +42,11 @@ spring:
       authentication-database: admin
       username: admin
       password: admin
+  mail:
+    default-encoding: UTF-8
+    host: smtp.aliyun.com
+    username: xxx@163.com
+    password: xxxxx
 mybatis:
   mapper-locations: classpath*:net/arver/oa/mapper/**/*.xml
   type-aliases-package: net.arver.oa.pojo
@@ -63,7 +68,13 @@ oa:
     expire: 5
     # 令牌缓存时间（天）
     cache-expire: 10
-
+  face:
+    createFaceModelUrl: http://localhost:3000/create_face_model
+    checkinUrl: http://localhost:3000/checkin
+  email:
+    system: xx1@163.com
+    hr: xx2@163.com
+  image-folder: D:/oa/image
 wx:
   app-id: wx99611af4c2358eba
   app-secret: e22d3e82a1dbdfb174e4b40cd9349b92

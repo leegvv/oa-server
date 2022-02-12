@@ -6,4 +6,8 @@
   <select id="searchTodayIsWorkday" resultType="Integer">
     select id from tb_workday where date = current_date limit 1;
   </select>
+
+  <select id="searchWorkdayInRange" parameterType="HashMap" resultType="String">
+    select date from tb_workday where date between #{startDate} and #{endDate}
+  </select>
 </mapper>

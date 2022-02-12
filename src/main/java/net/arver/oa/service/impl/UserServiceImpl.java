@@ -95,6 +95,11 @@ public class UserServiceImpl implements UserService {
         return null;
     }
 
+    @Override
+    public HashMap<String, Object> searchUserSummary(final Integer userId) {
+        return userMapper.searchUserSummary(userId);
+    }
+
     /**
      * 获取openId.
      * @param code code

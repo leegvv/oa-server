@@ -13,3 +13,4 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface FaceModelMapper extends BaseMapper<FaceModel, Integer, FaceModelExample> {
 }
+

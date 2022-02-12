@@ -2,6 +2,7 @@ package net.arver.oa.service;
 
 import net.arver.oa.pojo.User;
 
+import java.util.HashMap;
 import java.util.Set;
 
 /**
@@ -40,4 +41,11 @@ public interface UserService {
      * @return 用户信息
      */
     User searchById(int userId);
+
+    /**
+     * 查询用户信息.
+     * @param userId 用户id
+     * @return result
+     */
+    HashMap<String, Object> searchUserSummary(Integer userId);
 }

@@ -10,12 +10,15 @@ import net.arver.oa.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import java.util.HashMap;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
@@ -83,6 +86,19 @@ public class UserController {
         return R.ok("登陆成功")
                 .setAdditionalProperties("token", token)
                 .setAdditionalProperties("permission", userPermissions);
+    }
+
+    /**
+     * 查询用户摘要信息.
+     * @param token token
+     * @return 用户摘要信息
+     */
+    @GetMapping("/searchUserSummary")
+    @ApiOperation("查询用户摘要信息")
+    public R searchUserSummary(@RequestHeader("token")final String token) {
+        final int userId = jwtUtil.getUserId(token);
+        final HashMap<String, Object> result = userService.searchUserSummary(userId);
+        return R.ok(result);
     }
 
     /**
