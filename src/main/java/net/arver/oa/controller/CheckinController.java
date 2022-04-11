@@ -19,7 +19,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -203,6 +202,7 @@ public class CheckinController {
      * @param token token
      * @return 用户当月签到数据
      */
+    @SuppressWarnings("checkstyle:MagicNumber")
     @GetMapping("/searchMonthCheckin")
     @ApiOperation("查询用户当月签到数据")
     public R<List<Map<String, Object>>> searchMonthCheckin(@Valid final SearchMonthCheckinForm form,
@@ -234,11 +234,11 @@ public class CheckinController {
             final String status = one.get("status").toString();
             if ("工作日".equals(type)) {
                 if ("正常".equals(status)) {
-                    sum1 ++;
+                    sum1++;
                 } else if ("迟到".equals(status)) {
-                    sum2 ++;
+                    sum2++;
                 } else if ("缺勤".equals(status)) {
-                    sum3 ++;
+                    sum3++;
                 }
             }
         }

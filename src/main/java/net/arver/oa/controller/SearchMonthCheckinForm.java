@@ -17,7 +17,7 @@ public class SearchMonthCheckinForm {
      * 年.
      */
     @NonNull
-    @Range(min=2000, max = 3000)
+    @Range(min = 2000, max = 3000)
     private Integer year;
 
     /**

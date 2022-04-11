@@ -47,6 +47,9 @@ spring:
     host: smtp.aliyun.com
     username: xxx@163.com
     password: xxxxx
+  rabbitmq:
+    host: localhost
+    port: 5672
 mybatis:
   mapper-locations: classpath*:net/arver/oa/mapper/**/*.xml
   type-aliases-package: net.arver.oa.pojo

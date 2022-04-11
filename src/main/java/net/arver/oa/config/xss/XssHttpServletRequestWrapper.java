@@ -91,20 +91,24 @@ public class XssHttpServletRequestWrapper extends HttpServletRequestWrapper {
         buffer.close();
         reader.close();
         in.close();
-        final JSONObject jsonObject = JSONUtil.parseObj(body.toString());
-        final LinkedHashMap<String, Object> result = new LinkedHashMap<>();
-        for (final Map.Entry<String, Object> entry : jsonObject.entrySet()) {
-            final String key = entry.getKey();
-            final Object value = entry.getValue();
-            if (value instanceof String) {
-                if (StrUtil.isNotBlank(value.toString())) {
-                    result.put(key, HtmlUtil.filter(value.toString()));
+        String json = body.toString();
+        if (StrUtil.isNotBlank(json)) {
+            final JSONObject jsonObject = JSONUtil.parseObj(body.toString());
+            final LinkedHashMap<String, Object> result = new LinkedHashMap<>();
+            for (final Map.Entry<String, Object> entry : jsonObject.entrySet()) {
+                final String key = entry.getKey();
+                final Object value = entry.getValue();
+                if (value instanceof String) {
+                    if (StrUtil.isNotBlank(value.toString())) {
+                        result.put(key, HtmlUtil.filter(value.toString()));
+                    }
+                } else {
+                    result.put(key, value);
                 }
-            } else {
-                result.put(key, value);
             }
+            json = JSONUtil.toJsonStr(result);
         }
-        final String json = JSONUtil.toJsonStr(result);
+
         final ByteArrayInputStream byteIn = new ByteArrayInputStream(json.getBytes());
         return new ServletInputStream() {
             @Override

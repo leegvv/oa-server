@@ -117,6 +117,14 @@
             <artifactId>jsoup</artifactId>
             <version>1.14.3</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.rabbitmq</groupId>
+            <artifactId>amqp-client</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
@@ -154,7 +162,7 @@
                             <consoleOutput>true</consoleOutput>
                             <failOnViolation>true</failOnViolation>
                             <excludes>
-                                net/arver/oa/pojo/**/*.java,net/arver/oa/dao/**/*.java
+                                net/arver/oa/pojo/gen/**/*.java
                             </excludes>
                         </configuration>
                         <goals>

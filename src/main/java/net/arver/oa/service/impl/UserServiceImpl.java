@@ -1,19 +1,23 @@
 package net.arver.oa.service.impl;
 
 import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.util.IdUtil;
 import cn.hutool.http.HttpUtil;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import net.arver.oa.exception.ServiceException;
 import net.arver.oa.mapper.UserMapper;
+import net.arver.oa.pojo.MessageEntity;
 import net.arver.oa.pojo.User;
 import net.arver.oa.pojo.gen.UserExample;
 import net.arver.oa.service.UserService;
+import net.arver.oa.task.MessageTask;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -44,6 +48,12 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserMapper userMapper;
 
+    /**
+     * 消息任务.
+     */
+    @Autowired
+    private MessageTask messageTask;
+
     @Override
     public int registerUser(final String registerCode, final String code, final String nickname, final String photo) {
         if ("000000".equals(registerCode)) {
@@ -61,6 +71,14 @@ public class UserServiceImpl implements UserService {
                 user.setRoot(Boolean.TRUE);
                 userMapper.insert(user);
                 final Integer id = searchIdByOpenId(openId);
+
+                final MessageEntity message = new MessageEntity();
+                message.setSenderId(0);
+                message.setSenderName("系统消息");
+                message.setUuid(IdUtil.simpleUUID());
+                message.setMsg("欢迎您注册成为超级管理员，请及时更新你的员工个人信息");
+                message.setSendTime(new Date());
+                messageTask.sendAsync(id + "", message);
                 return id;
             } else {
                 throw new ServiceException("无法绑定超级管理员账号");
@@ -82,7 +100,7 @@ public class UserServiceImpl implements UserService {
         if (id == null) {
             throw new ServiceException("账户不存在");
         }
-        // TODO 从消息队列中接收消息，转移到消息表
+        //messageTask.receiveAsync(id + "");
         return id;
     }
 
