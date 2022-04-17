@@ -8,10 +8,10 @@
     <result column="creator_id" jdbcType="BIGINT" property="creatorId" />
     <result column="date" jdbcType="DATE" property="date" />
     <result column="place" jdbcType="VARCHAR" property="place" />
-    <result column="start" jdbcType="TIME" property="start" />
-    <result column="end" jdbcType="TIME" property="end" />
+    <result column="start" jdbcType="VARCHAR" property="start" />
+    <result column="end" jdbcType="VARCHAR" property="end" />
     <result column="type" jdbcType="SMALLINT" property="type" />
-    <result column="desc" jdbcType="VARCHAR" property="desc" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
     <result column="instance_id" jdbcType="VARCHAR" property="instanceId" />
     <result column="status" jdbcType="SMALLINT" property="status" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
@@ -78,8 +78,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, uuid, title, creator_id, date, place, start, end, type, desc, instance_id, status, 
-    create_time
+    id, uuid, title, creator_id, date, place, start, end, type, remark, instance_id, 
+    status, create_time
   </sql>
   <sql id="Blob_Column_List">
     members
@@ -154,12 +154,12 @@
     </selectKey>
     insert into tb_meeting (uuid, title, creator_id, 
       date, place, start, end, 
-      type, desc, instance_id, 
+      type, remark, instance_id, 
       status, create_time, members
       )
     values (#{uuid,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{creatorId,jdbcType=BIGINT}, 
-      #{date,jdbcType=DATE}, #{place,jdbcType=VARCHAR}, #{start,jdbcType=TIME}, #{end,jdbcType=TIME}, 
-      #{type,jdbcType=SMALLINT}, #{desc,jdbcType=VARCHAR}, #{instanceId,jdbcType=VARCHAR}, 
+      #{date,jdbcType=DATE}, #{place,jdbcType=VARCHAR}, #{start,jdbcType=VARCHAR}, #{end,jdbcType=VARCHAR}, 
+      #{type,jdbcType=SMALLINT}, #{remark,jdbcType=VARCHAR}, #{instanceId,jdbcType=VARCHAR}, 
       #{status,jdbcType=SMALLINT}, #{createTime,jdbcType=TIMESTAMP}, #{members,jdbcType=LONGVARCHAR}
       )
   </insert>
@@ -193,8 +193,8 @@
       <if test="type != null">
         type,
       </if>
-      <if test="desc != null">
-        desc,
+      <if test="remark != null">
+        remark,
       </if>
       <if test="instanceId != null">
         instance_id,
@@ -226,16 +226,16 @@
         #{place,jdbcType=VARCHAR},
       </if>
       <if test="start != null">
-        #{start,jdbcType=TIME},
+        #{start,jdbcType=VARCHAR},
       </if>
       <if test="end != null">
-        #{end,jdbcType=TIME},
+        #{end,jdbcType=VARCHAR},
       </if>
       <if test="type != null">
         #{type,jdbcType=SMALLINT},
       </if>
-      <if test="desc != null">
-        #{desc,jdbcType=VARCHAR},
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
       </if>
       <if test="instanceId != null">
         #{instanceId,jdbcType=VARCHAR},
@@ -279,16 +279,16 @@
         place = #{record.place,jdbcType=VARCHAR},
       </if>
       <if test="record.start != null">
-        start = #{record.start,jdbcType=TIME},
+        start = #{record.start,jdbcType=VARCHAR},
       </if>
       <if test="record.end != null">
-        end = #{record.end,jdbcType=TIME},
+        end = #{record.end,jdbcType=VARCHAR},
       </if>
       <if test="record.type != null">
         type = #{record.type,jdbcType=SMALLINT},
       </if>
-      <if test="record.desc != null">
-        desc = #{record.desc,jdbcType=VARCHAR},
+      <if test="record.remark != null">
+        remark = #{record.remark,jdbcType=VARCHAR},
       </if>
       <if test="record.instanceId != null">
         instance_id = #{record.instanceId,jdbcType=VARCHAR},
@@ -315,10 +315,10 @@
       creator_id = #{record.creatorId,jdbcType=BIGINT},
       date = #{record.date,jdbcType=DATE},
       place = #{record.place,jdbcType=VARCHAR},
-      start = #{record.start,jdbcType=TIME},
-      end = #{record.end,jdbcType=TIME},
+      start = #{record.start,jdbcType=VARCHAR},
+      end = #{record.end,jdbcType=VARCHAR},
       type = #{record.type,jdbcType=SMALLINT},
-      desc = #{record.desc,jdbcType=VARCHAR},
+      remark = #{record.remark,jdbcType=VARCHAR},
       instance_id = #{record.instanceId,jdbcType=VARCHAR},
       status = #{record.status,jdbcType=SMALLINT},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
@@ -335,10 +335,10 @@
       creator_id = #{record.creatorId,jdbcType=BIGINT},
       date = #{record.date,jdbcType=DATE},
       place = #{record.place,jdbcType=VARCHAR},
-      start = #{record.start,jdbcType=TIME},
-      end = #{record.end,jdbcType=TIME},
+      start = #{record.start,jdbcType=VARCHAR},
+      end = #{record.end,jdbcType=VARCHAR},
       type = #{record.type,jdbcType=SMALLINT},
-      desc = #{record.desc,jdbcType=VARCHAR},
+      remark = #{record.remark,jdbcType=VARCHAR},
       instance_id = #{record.instanceId,jdbcType=VARCHAR},
       status = #{record.status,jdbcType=SMALLINT},
       create_time = #{record.createTime,jdbcType=TIMESTAMP}
@@ -365,16 +365,16 @@
         place = #{place,jdbcType=VARCHAR},
       </if>
       <if test="start != null">
-        start = #{start,jdbcType=TIME},
+        start = #{start,jdbcType=VARCHAR},
       </if>
       <if test="end != null">
-        end = #{end,jdbcType=TIME},
+        end = #{end,jdbcType=VARCHAR},
       </if>
       <if test="type != null">
         type = #{type,jdbcType=SMALLINT},
       </if>
-      <if test="desc != null">
-        desc = #{desc,jdbcType=VARCHAR},
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
       </if>
       <if test="instanceId != null">
         instance_id = #{instanceId,jdbcType=VARCHAR},
@@ -398,10 +398,10 @@
       creator_id = #{creatorId,jdbcType=BIGINT},
       date = #{date,jdbcType=DATE},
       place = #{place,jdbcType=VARCHAR},
-      start = #{start,jdbcType=TIME},
-      end = #{end,jdbcType=TIME},
+      start = #{start,jdbcType=VARCHAR},
+      end = #{end,jdbcType=VARCHAR},
       type = #{type,jdbcType=SMALLINT},
-      desc = #{desc,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
       instance_id = #{instanceId,jdbcType=VARCHAR},
       status = #{status,jdbcType=SMALLINT},
       create_time = #{createTime,jdbcType=TIMESTAMP},
@@ -415,10 +415,10 @@
       creator_id = #{creatorId,jdbcType=BIGINT},
       date = #{date,jdbcType=DATE},
       place = #{place,jdbcType=VARCHAR},
-      start = #{start,jdbcType=TIME},
-      end = #{end,jdbcType=TIME},
+      start = #{start,jdbcType=VARCHAR},
+      end = #{end,jdbcType=VARCHAR},
       type = #{type,jdbcType=SMALLINT},
-      desc = #{desc,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
       instance_id = #{instanceId,jdbcType=VARCHAR},
       status = #{status,jdbcType=SMALLINT},
       create_time = #{createTime,jdbcType=TIMESTAMP}

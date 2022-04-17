@@ -1,5 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="net.arver.oa.mapper.MeetingMapper">
-  <resultMap extends="net.arver.oa.mapper.MeetingMapper.BaseResultMap" id="ResultMap" type="net.arver.oa.pojo.Meeting" />
+    <resultMap extends="net.arver.oa.mapper.MeetingMapper.BaseResultMap" id="ResultMap"
+               type="net.arver.oa.pojo.Meeting"/>
+
+    <select id="searchMyMeetingListByPage" parameterType="HashMap" resultType="HashMap">
+        select m.id,
+               m.uuid,
+               m.title,
+               u2.name,
+               DATE_FORMAT(m.date, '%Y年%m月%d日') as date, m.place, m.start, m.end,
+               m.type, m.status, m.remark, u2.photo,
+               TIMESTAMPDIFF(HOUR, CONCAT(m.date, " ", m.start ), concat(m.date, " ", m.end)) as hour
+        from tb_meeting m join tb_user u1 on JSON_CONTAINS(m.members, CAST(u1.id as CHAR))
+            join tb_user u2 on m.creator_id = u2.id
+        where u1.id = #{userId} and m.status in (3, 4) and u1.status = 1 and u2.status = 1
+        order by m.date, m.start, m.id
+        limit #{start}, #{length}
+    </select>
 </mapper>

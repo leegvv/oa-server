@@ -40,12 +40,12 @@ public class BaseMeeting implements Serializable {
     /**
      * 开始时间.
      */
-    private java.time.LocalTime start;
+    private String start;
 
     /**
      * 结束时间.
      */
-    private java.time.LocalTime end;
+    private String end;
 
     /**
      * 会议类型（1在线会议，2线下会议）.
@@ -55,7 +55,7 @@ public class BaseMeeting implements Serializable {
     /**
      * 会议内容.
      */
-    private String desc;
+    private String remark;
 
     /**
      * 工作流实例ID.
@@ -125,19 +125,19 @@ public class BaseMeeting implements Serializable {
         this.place = place;
     }
 
-    public java.time.LocalTime getStart() {
+    public String getStart() {
         return start;
     }
 
-    public void setStart(java.time.LocalTime start) {
+    public void setStart(String start) {
         this.start = start;
     }
 
-    public java.time.LocalTime getEnd() {
+    public String getEnd() {
         return end;
     }
 
-    public void setEnd(java.time.LocalTime end) {
+    public void setEnd(String end) {
         this.end = end;
     }
 
@@ -149,12 +149,12 @@ public class BaseMeeting implements Serializable {
         this.type = type;
     }
 
-    public String getDesc() {
-        return desc;
+    public String getRemark() {
+        return remark;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 
     public String getInstanceId() {

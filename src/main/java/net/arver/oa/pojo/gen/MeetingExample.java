@@ -2,7 +2,6 @@ package net.arver.oa.pojo.gen;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -527,52 +526,62 @@ public class MeetingExample {
             return (Criteria) this;
         }
 
-        public Criteria andStartEqualTo(LocalTime value) {
+        public Criteria andStartEqualTo(String value) {
             addCriterion("start =", value, "start");
             return (Criteria) this;
         }
 
-        public Criteria andStartNotEqualTo(LocalTime value) {
+        public Criteria andStartNotEqualTo(String value) {
             addCriterion("start <>", value, "start");
             return (Criteria) this;
         }
 
-        public Criteria andStartGreaterThan(LocalTime value) {
+        public Criteria andStartGreaterThan(String value) {
             addCriterion("start >", value, "start");
             return (Criteria) this;
         }
 
-        public Criteria andStartGreaterThanOrEqualTo(LocalTime value) {
+        public Criteria andStartGreaterThanOrEqualTo(String value) {
             addCriterion("start >=", value, "start");
             return (Criteria) this;
         }
 
-        public Criteria andStartLessThan(LocalTime value) {
+        public Criteria andStartLessThan(String value) {
             addCriterion("start <", value, "start");
             return (Criteria) this;
         }
 
-        public Criteria andStartLessThanOrEqualTo(LocalTime value) {
+        public Criteria andStartLessThanOrEqualTo(String value) {
             addCriterion("start <=", value, "start");
             return (Criteria) this;
         }
 
-        public Criteria andStartIn(List<LocalTime> values) {
+        public Criteria andStartLike(String value) {
+            addCriterion("start like", value, "start");
+            return (Criteria) this;
+        }
+
+        public Criteria andStartNotLike(String value) {
+            addCriterion("start not like", value, "start");
+            return (Criteria) this;
+        }
+
+        public Criteria andStartIn(List<String> values) {
             addCriterion("start in", values, "start");
             return (Criteria) this;
         }
 
-        public Criteria andStartNotIn(List<LocalTime> values) {
+        public Criteria andStartNotIn(List<String> values) {
             addCriterion("start not in", values, "start");
             return (Criteria) this;
         }
 
-        public Criteria andStartBetween(LocalTime value1, LocalTime value2) {
+        public Criteria andStartBetween(String value1, String value2) {
             addCriterion("start between", value1, value2, "start");
             return (Criteria) this;
         }
 
-        public Criteria andStartNotBetween(LocalTime value1, LocalTime value2) {
+        public Criteria andStartNotBetween(String value1, String value2) {
             addCriterion("start not between", value1, value2, "start");
             return (Criteria) this;
         }
@@ -587,52 +596,62 @@ public class MeetingExample {
             return (Criteria) this;
         }
 
-        public Criteria andEndEqualTo(LocalTime value) {
+        public Criteria andEndEqualTo(String value) {
             addCriterion("end =", value, "end");
             return (Criteria) this;
         }
 
-        public Criteria andEndNotEqualTo(LocalTime value) {
+        public Criteria andEndNotEqualTo(String value) {
             addCriterion("end <>", value, "end");
             return (Criteria) this;
         }
 
-        public Criteria andEndGreaterThan(LocalTime value) {
+        public Criteria andEndGreaterThan(String value) {
             addCriterion("end >", value, "end");
             return (Criteria) this;
         }
 
-        public Criteria andEndGreaterThanOrEqualTo(LocalTime value) {
+        public Criteria andEndGreaterThanOrEqualTo(String value) {
             addCriterion("end >=", value, "end");
             return (Criteria) this;
         }
 
-        public Criteria andEndLessThan(LocalTime value) {
+        public Criteria andEndLessThan(String value) {
             addCriterion("end <", value, "end");
             return (Criteria) this;
         }
 
-        public Criteria andEndLessThanOrEqualTo(LocalTime value) {
+        public Criteria andEndLessThanOrEqualTo(String value) {
             addCriterion("end <=", value, "end");
             return (Criteria) this;
         }
 
-        public Criteria andEndIn(List<LocalTime> values) {
+        public Criteria andEndLike(String value) {
+            addCriterion("end like", value, "end");
+            return (Criteria) this;
+        }
+
+        public Criteria andEndNotLike(String value) {
+            addCriterion("end not like", value, "end");
+            return (Criteria) this;
+        }
+
+        public Criteria andEndIn(List<String> values) {
             addCriterion("end in", values, "end");
             return (Criteria) this;
         }
 
-        public Criteria andEndNotIn(List<LocalTime> values) {
+        public Criteria andEndNotIn(List<String> values) {
             addCriterion("end not in", values, "end");
             return (Criteria) this;
         }
 
-        public Criteria andEndBetween(LocalTime value1, LocalTime value2) {
+        public Criteria andEndBetween(String value1, String value2) {
             addCriterion("end between", value1, value2, "end");
             return (Criteria) this;
         }
 
-        public Criteria andEndNotBetween(LocalTime value1, LocalTime value2) {
+        public Criteria andEndNotBetween(String value1, String value2) {
             addCriterion("end not between", value1, value2, "end");
             return (Criteria) this;
         }
@@ -697,73 +716,73 @@ public class MeetingExample {
             return (Criteria) this;
         }
 
-        public Criteria andDescIsNull() {
-            addCriterion("desc is null");
+        public Criteria andRemarkIsNull() {
+            addCriterion("remark is null");
             return (Criteria) this;
         }
 
-        public Criteria andDescIsNotNull() {
-            addCriterion("desc is not null");
+        public Criteria andRemarkIsNotNull() {
+            addCriterion("remark is not null");
             return (Criteria) this;
         }
 
-        public Criteria andDescEqualTo(String value) {
-            addCriterion("desc =", value, "desc");
+        public Criteria andRemarkEqualTo(String value) {
+            addCriterion("remark =", value, "remark");
             return (Criteria) this;
         }
 
-        public Criteria andDescNotEqualTo(String value) {
-            addCriterion("desc <>", value, "desc");
+        public Criteria andRemarkNotEqualTo(String value) {
+            addCriterion("remark <>", value, "remark");
             return (Criteria) this;
         }
 
-        public Criteria andDescGreaterThan(String value) {
-            addCriterion("desc >", value, "desc");
+        public Criteria andRemarkGreaterThan(String value) {
+            addCriterion("remark >", value, "remark");
             return (Criteria) this;
         }
 
-        public Criteria andDescGreaterThanOrEqualTo(String value) {
-            addCriterion("desc >=", value, "desc");
+        public Criteria andRemarkGreaterThanOrEqualTo(String value) {
+            addCriterion("remark >=", value, "remark");
             return (Criteria) this;
         }
 
-        public Criteria andDescLessThan(String value) {
-            addCriterion("desc <", value, "desc");
+        public Criteria andRemarkLessThan(String value) {
+            addCriterion("remark <", value, "remark");
             return (Criteria) this;
         }
 
-        public Criteria andDescLessThanOrEqualTo(String value) {
-            addCriterion("desc <=", value, "desc");
+        public Criteria andRemarkLessThanOrEqualTo(String value) {
+            addCriterion("remark <=", value, "remark");
             return (Criteria) this;
         }
 
-        public Criteria andDescLike(String value) {
-            addCriterion("desc like", value, "desc");
+        public Criteria andRemarkLike(String value) {
+            addCriterion("remark like", value, "remark");
             return (Criteria) this;
         }
 
-        public Criteria andDescNotLike(String value) {
-            addCriterion("desc not like", value, "desc");
+        public Criteria andRemarkNotLike(String value) {
+            addCriterion("remark not like", value, "remark");
             return (Criteria) this;
         }
 
-        public Criteria andDescIn(List<String> values) {
-            addCriterion("desc in", values, "desc");
+        public Criteria andRemarkIn(List<String> values) {
+            addCriterion("remark in", values, "remark");
             return (Criteria) this;
         }
 
-        public Criteria andDescNotIn(List<String> values) {
-            addCriterion("desc not in", values, "desc");
+        public Criteria andRemarkNotIn(List<String> values) {
+            addCriterion("remark not in", values, "remark");
             return (Criteria) this;
         }
 
-        public Criteria andDescBetween(String value1, String value2) {
-            addCriterion("desc between", value1, value2, "desc");
+        public Criteria andRemarkBetween(String value1, String value2) {
+            addCriterion("remark between", value1, value2, "remark");
             return (Criteria) this;
         }
 
-        public Criteria andDescNotBetween(String value1, String value2) {
-            addCriterion("desc not between", value1, value2, "desc");
+        public Criteria andRemarkNotBetween(String value1, String value2) {
+            addCriterion("remark not between", value1, value2, "remark");
             return (Criteria) this;
         }
 
